@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -12,28 +10,66 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
-
   @override
-  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String entryTime = '';
+  String exitTime = '';
+
+  void registerEntryTime() {
+    // Lógica para registrar o horário de entrada
+    DateTime now = DateTime.now();
+    setState(() {
+      entryTime = '${now.hour}:${now.minute}';
+    });
+  }
+
+  void registerExitTime() {
+    // Lógica para registrar o horário de saída
+    DateTime now = DateTime.now();
+    setState(() {
+      exitTime = '${now.hour}:${now.minute}';
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Registro de Ponto'),
+        title: Text('Registro de Ponto'),
       ),
-      body: const Center(
-        child: Text('Aplicativo de Ponto de Entrada e Saída do Trabalho'),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              'Horário de entrada: $entryTime',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 16),
+            Text(
+              'Horário de saída: $exitTime',
+              style: TextStyle(fontSize: 18),
+            ),
+            SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: registerEntryTime,
+              child: Text('Registrar Entrada'),
+            ),
+            ElevatedButton(
+              onPressed: registerExitTime,
+              child: Text('Registrar Saída'),
+            ),
+          ],
+        ),
       ),
     );
   }
