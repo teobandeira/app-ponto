@@ -1,6 +1,6 @@
 # apponto
 
-A new Flutter project.
+projeto em Flutter para marcação de ponto de trabalho para Android e IOS
 
 ## Getting Started
 
